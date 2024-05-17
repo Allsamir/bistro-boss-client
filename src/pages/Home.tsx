@@ -2,6 +2,7 @@ import Banner from "../components/Banner";
 import Feature from "../components/Feature";
 import PopularMenu from "../components/PopularMenu";
 import Slider from "../components/Slider";
+import Testimonial from "../components/Testimonial";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <Slider />
       <PopularMenu />
       <Feature />
+      <Testimonial />
     </div>
   );
 };
