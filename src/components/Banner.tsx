@@ -10,7 +10,7 @@ import "../index.css";
 
 const Banner = () => {
   return (
-    <Carousel autoPlay={true}>
+    <Carousel autoPlay={true} infiniteLoop={true}>
       <div>
         <img src={img1} />
       </div>
