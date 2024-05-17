@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PageTitle from "./PageTitle";
+import MenuCard from "./MenuCard";
 
 interface Menu {
   _id: string;
@@ -25,6 +26,11 @@ const PopularMenu = () => {
   return (
     <div>
       <PageTitle heading="From Our Menu" subHeading="Popular Items" />
+      <div className="grid md:grid-cols-2 gap-8 container mx-auto px-4 mb-32">
+        {menu.map((item, index) => (
+          <MenuCard key={index} item={item} />
+        ))}
+      </div>
     </div>
   );
 };

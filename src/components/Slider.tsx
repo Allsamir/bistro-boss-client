@@ -26,27 +26,52 @@ const Slider = () => {
       >
         <SwiperSlide>
           <img src={slider1} alt="" />
-          <h3 className="text-4xl uppercase -mt-20  text-white">Salads</h3>
+          <h3
+            className="text-4xl uppercase text-black text-center absolute top-1/2 left-1/2"
+            style={{ transform: " translate(-50%, -50%)" }}
+          >
+            Salads
+          </h3>
         </SwiperSlide>
         <SwiperSlide>
           {" "}
           <img src={slider2} alt="" />
-          <h3 className="text-4xl uppercase -mt-20 text-white">Pizzas</h3>
+          <h3
+            className="text-4xl uppercase text-black text-center absolute top-1/2 left-1/2"
+            style={{ transform: " translate(-50%, -50%)" }}
+          >
+            Pizzas
+          </h3>
         </SwiperSlide>
         <SwiperSlide>
           {" "}
           <img src={slider3} alt="" />
-          <h3 className="text-4xl uppercase -mt-20 text-white">Soups</h3>
+          <h3
+            className="text-4xl uppercase text-black text-center absolute top-1/2 left-1/2"
+            style={{ transform: " translate(-50%, -50%)" }}
+          >
+            Soups
+          </h3>
         </SwiperSlide>
         <SwiperSlide>
           {" "}
           <img src={slider4} alt="" />
-          <h3 className="text-4xl uppercase -mt-20 text-white">Deserts</h3>
+          <h3
+            className="text-4xl uppercase text-black text-center absolute top-1/2 left-1/2"
+            style={{ transform: " translate(-50%, -50%)" }}
+          >
+            Deserts
+          </h3>
         </SwiperSlide>
         <SwiperSlide>
           {" "}
           <img src={slider5} alt="" />
-          <h3 className="text-4xl uppercase -mt-20 text-white">Salads</h3>
+          <h3
+            className="text-4xl uppercase text-black text-center absolute top-1/2 left-1/2"
+            style={{ transform: " translate(-50%, -50%)" }}
+          >
+            Salads
+          </h3>
         </SwiperSlide>
       </Swiper>
     </>

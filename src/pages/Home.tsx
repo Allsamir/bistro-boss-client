@@ -1,4 +1,5 @@
 import Banner from "../components/Banner";
+import Feature from "../components/Feature";
 import PopularMenu from "../components/PopularMenu";
 import Slider from "../components/Slider";
 
@@ -8,6 +9,7 @@ const Home = () => {
       <Banner />
       <Slider />
       <PopularMenu />
+      <Feature />
     </div>
   );
 };
