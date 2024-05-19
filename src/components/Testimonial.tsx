@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "./slider.css";
 import { Rate } from "antd";
+import { RiDoubleQuotesL } from "react-icons/ri";
 interface Reviews {
   _id: string;
   name: string;
@@ -30,6 +31,10 @@ const Testimonial: React.FC = () => {
             <SwiperSlide key={index}>
               <div className="mx-8 my-12 space-y-12">
                 <Rate disabled defaultValue={review.rating} />
+                <div className="">
+                  {" "}
+                  <RiDoubleQuotesL className="text-8xl mx-auto" />
+                </div>
                 <p className="w-4/5 mx-auto">{review.details}</p>
                 <h1 className="text-center text-3xl text-yellow-600">
                   {review.name}
