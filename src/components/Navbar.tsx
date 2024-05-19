@@ -14,7 +14,9 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <a>About</a>
+        <NavLink className={`mb-2`} to={"/order"}>
+          Order
+        </NavLink>
       </li>
     </>
   );
