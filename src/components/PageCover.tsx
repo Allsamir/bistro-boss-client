@@ -10,17 +10,20 @@ const PageCover: React.FC<ChildProps> = ({ img, title }) => {
     <ParallaxBanner
       layers={[
         { image: img, speed: -20 },
+        { opacity: [0.5, 0.9] },
         {
           speed: -15,
           children: (
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <h1 className="mb-5 text-6xl font-bold uppercase text-white">
-                {title}
-              </h1>
-              <p className="mb-5 text-white">
-                The best menu you can ever get in this town. Check our menu to
-                select the best recipe in the town.
-              </p>
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-40">
+              <div className="text-center">
+                <h1 className="mb-5 text-6xl font-bold uppercase text-white">
+                  {title}
+                </h1>
+                <p className="mb-5 text-white">
+                  The best menu you can ever get in this town. Check our menu to
+                  select the best recipe in the town.
+                </p>
+              </div>
             </div>
           ),
         },

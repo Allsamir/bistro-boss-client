@@ -1,35 +1,23 @@
-import { useEffect, useState } from "react";
 import PageTitle from "./PageTitle";
 import MenuCard from "./MenuCard";
-
-interface Menu {
-  _id: string;
-  name: string;
-  recipe: string;
-  image: string;
-  category: string;
-  price: number;
-}
+import useMenu from "../hooks/useMenu";
 
 const PopularMenu = () => {
-  const [menu, setMenu] = useState(Array<Menu>);
-  console.log(menu);
-  useEffect(() => {
-    fetch("menu.json")
-      .then((res) => res.json())
-      .then((menu) => {
-        setMenu(
-          menu.filter((singleMenu: Menu) => singleMenu.category === "popular"),
-        );
-      });
-  }, []);
+  const popularMenu = useMenu("popular");
   return (
     <div>
       <PageTitle heading="From Our Menu" subHeading="Popular Items" />
       <div className="grid md:grid-cols-2 gap-8 container mx-auto px-4 mb-32">
-        {menu.map((item, index) => (
+        {popularMenu.map((item, index) => (
           <MenuCard key={index} item={item} />
         ))}
+      </div>
+      <div
+        className="text-center
+        mb-12
+      "
+      >
+        <button className="btn btn-outline uppercase">View Our Menu</button>
       </div>
     </div>
   );
