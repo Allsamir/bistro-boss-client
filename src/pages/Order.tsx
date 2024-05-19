@@ -28,7 +28,7 @@ const Order: React.FC = () => {
       setMenu("drinks");
     }
   }, [tabIndex, category]);
-  const foodItems = useMenu(menu);
+  const { menu: foodItems, loading } = useMenu(menu);
   return (
     <>
       <Helmet>
@@ -47,6 +47,11 @@ const Order: React.FC = () => {
             </TabList>
           </div>
           <TabPanel>
+            {loading && (
+              <div className="flex justify-center items-center min-h-screen">
+                <span className="loading loading-spinner loading-lg"></span>
+              </div>
+            )}
             <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4">
               {foodItems.map((item, index) => (
                 <FoodCard item={item} key={index} />
@@ -54,6 +59,11 @@ const Order: React.FC = () => {
             </div>
           </TabPanel>
           <TabPanel>
+            {loading && (
+              <div className="flex justify-center items-center min-h-screen">
+                <span className="loading loading-spinner loading-lg"></span>
+              </div>
+            )}
             <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4">
               {foodItems.map((item, index) => (
                 <FoodCard item={item} key={index} />
@@ -61,6 +71,11 @@ const Order: React.FC = () => {
             </div>
           </TabPanel>
           <TabPanel>
+            {loading && (
+              <div className="flex justify-center items-center min-h-screen">
+                <span className="loading loading-spinner loading-lg"></span>
+              </div>
+            )}
             <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4">
               {foodItems.map((item, index) => (
                 <FoodCard item={item} key={index} />
@@ -68,6 +83,11 @@ const Order: React.FC = () => {
             </div>
           </TabPanel>
           <TabPanel>
+            {loading && (
+              <div className="flex justify-center items-center min-h-screen">
+                <span className="loading loading-spinner loading-lg"></span>
+              </div>
+            )}
             <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4">
               {foodItems.map((item, index) => (
                 <FoodCard item={item} key={index} />
@@ -75,6 +95,11 @@ const Order: React.FC = () => {
             </div>
           </TabPanel>
           <TabPanel>
+            {loading && (
+              <div className="flex justify-center items-center min-h-screen">
+                <span className="loading loading-spinner loading-lg"></span>
+              </div>
+            )}
             <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4">
               {foodItems.map((item, index) => (
                 <FoodCard item={item} key={index} />

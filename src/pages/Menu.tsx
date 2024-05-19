@@ -9,12 +9,11 @@ import pizzaImg from "../assets/menu/pizza-bg.jpg";
 import soupImg from "../assets/menu/soup-bg.jpg";
 import saladImg from "../assets/menu/salad-bg.jpg";
 const Menu = () => {
-  const desserts = useMenu("dessert");
-  const pizza = useMenu("pizza");
-  console.log(pizza);
-  const soup = useMenu("soup");
-  const salad = useMenu("salad");
-  const offered = useMenu("offered");
+  const { menu: desserts } = useMenu("dessert");
+  const { menu: pizza } = useMenu("pizza");
+  const { menu: soup } = useMenu("soup");
+  const { menu: salad } = useMenu("salad");
+  const { menu: offered } = useMenu("offered");
   return (
     <>
       <Helmet>

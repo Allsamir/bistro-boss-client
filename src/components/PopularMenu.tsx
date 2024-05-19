@@ -3,7 +3,7 @@ import MenuCard from "./MenuCard";
 import useMenu from "../hooks/useMenu";
 
 const PopularMenu = () => {
-  const popularMenu = useMenu("popular");
+  const { menu: popularMenu } = useMenu("popular");
   return (
     <div>
       <PageTitle heading="From Our Menu" subHeading="Popular Items" />

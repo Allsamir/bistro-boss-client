@@ -18,7 +18,7 @@ const Testimonial: React.FC = () => {
   const [reviews, setReviews] = useState(Array<Reviews>);
   console.log(reviews);
   useEffect(() => {
-    fetch("reviews.json")
+    fetch("http://localhost:3000/reviews")
       .then((res) => res.json())
       .then((reviews) => setReviews(reviews));
   }, []);
