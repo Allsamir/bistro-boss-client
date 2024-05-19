@@ -8,13 +8,16 @@ const FoodCard: React.FC<ChildProps> = ({ item }) => {
   return (
     <div className="card bg-base-100 shadow-xl">
       <figure>
-        <img src={item.image} alt={item.name} />
+        <img src={item.image} alt={item.name} className="w-full" />
+        <p className="absolute bg-black text-white top-4 right-4 p-1">
+          ${item.price}
+        </p>
       </figure>
       <div className="card-body">
-        <h2 className="card-title">Shoes!</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
+        <h2 className="card-title">{item.name}</h2>
+        <p>{item.recipe}</p>
+        <div className="card-actions justify-start mt-4">
+          <button className="btn btn-primary">Add to Cart</button>
         </div>
       </div>
     </div>

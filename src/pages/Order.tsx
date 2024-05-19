@@ -28,13 +28,15 @@ const Order: React.FC = () => {
       <PageCover img={orderCoverImg} title="Order Food" />
       <div>
         <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-          <TabList>
-            <Tab>Salad</Tab>
-            <Tab>Pizza</Tab>
-            <Tab>Soup</Tab>
-            <Tab>Desserts</Tab>
-            <Tab>Drinks</Tab>
-          </TabList>
+          <div className="text-center">
+            <TabList>
+              <Tab>Salad</Tab>
+              <Tab>Pizza</Tab>
+              <Tab>Soup</Tab>
+              <Tab>Desserts</Tab>
+              <Tab>Drinks</Tab>
+            </TabList>
+          </div>
           <TabPanel>
             <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4">
               {foodItems.map((item, index) => (
