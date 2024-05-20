@@ -5,6 +5,11 @@ import {
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
+import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import bgImage from "../assets/others/authentication.png";
+import img from "../assets/others/authentication2.png";
 type Inputs = {
   email: string;
   password: string;
@@ -14,30 +19,54 @@ type Inputs = {
 const Login: React.FC = () => {
   const { register, handleSubmit } = useForm<Inputs>();
   const [isPasswordVisible, setPasswordVisible] = useState(false);
+  const { loginUser, setLoading } = useAuth();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const { email, password, captchaValue } = data;
-    console.log(email, password);
     if (validateCaptcha(captchaValue)) {
-      alert("Captcha Ok");
+      loginUser(email, password)
+        .then(() => {
+          Swal.fire({
+            title: "Successful",
+            text: "Login Successfully Done",
+            icon: "success",
+            confirmButtonText: "close",
+          });
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          Swal.fire({
+            title: "Error!",
+            text: `${errorCode} ${errorMessage}`,
+            icon: "error",
+            confirmButtonText: "close",
+          }).then(() => setLoading(false));
+        });
     } else {
-      alert("Try again");
+      Swal.fire({
+        title: "Error!",
+        text: `Captcha validation failed try again`,
+        icon: "error",
+        confirmButtonText: "close",
+      });
     }
   };
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div
+      className="hero min-h-screen bg-base-200"
+      style={{ backgroundImage: `url("${bgImage}")` }}
+    >
       <div className="hero-content flex-col md:flex-row lg:gap-40 md:gap-12">
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
+          <img src={img} alt="" />
         </div>
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <h1 className="font-semibold text-2xl md:text-4xl mt-12 text-center">
+            Login Now!
+          </h1>
           <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control">
               <label className="label">
@@ -88,6 +117,12 @@ const Login: React.FC = () => {
               </button>
             </div>
           </form>
+          <p className="text-center pb-8">
+            New Here?{" "}
+            <Link to={`/register`} className="text-sky-700">
+              Create a New Account
+            </Link>
+          </p>
         </div>
       </div>
     </div>

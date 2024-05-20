@@ -4,13 +4,18 @@ import {
   UserCredential,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { auth } from "../config/firebase.config";
 
 interface AuthContextType {
   user: User | null;
   loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   createUser: (email: string, password: string) => Promise<UserCredential>;
+  loginUser: (email: string, password: string) => Promise<UserCredential>;
+  logOutUser: () => Promise<void>;
 }
 
 interface ChildProps {
@@ -24,6 +29,13 @@ const AuthProvider: React.FC<ChildProps> = ({ children }) => {
   const createUser = (email: string, password: string) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
+  };
+  const loginUser = (email: string, password: string) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+  const logOutUser = () => {
+    return signOut(auth);
   };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -42,7 +54,10 @@ const AuthProvider: React.FC<ChildProps> = ({ children }) => {
   const authInfo = {
     user,
     loading,
+    setLoading,
     createUser,
+    loginUser,
+    logOutUser,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
