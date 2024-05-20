@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import {
   loadCaptchaEnginge,
-  LoadCanvasTemplateNoReload,
+  LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
 type Inputs = {
@@ -73,7 +73,7 @@ const Login: React.FC = () => {
               <label className="label">
                 <span className="label-text">Captcha</span>
               </label>
-              <LoadCanvasTemplateNoReload />
+              <LoadCanvasTemplate />
               <input
                 type="text"
                 placeholder="Captcha"
