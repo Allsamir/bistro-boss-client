@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "./slider.css";
 import { Rate } from "antd";
 import { RiDoubleQuotesL } from "react-icons/ri";
+import useSecureAxios from "../hooks/useSecureAxios";
 interface Reviews {
   _id: string;
   name: string;
@@ -16,12 +17,10 @@ interface Reviews {
 
 const Testimonial: React.FC = () => {
   const [reviews, setReviews] = useState(Array<Reviews>);
-  console.log(reviews);
+  const secureAxios = useSecureAxios();
   useEffect(() => {
-    fetch("http://localhost:3000/reviews")
-      .then((res) => res.json())
-      .then((reviews) => setReviews(reviews));
-  }, []);
+    secureAxios("/reviews").then((res) => setReviews(res.data));
+  }, [secureAxios]);
   return (
     <div>
       <PageTitle subHeading="What Our Client Say" heading="Testimonials" />

@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 import Menu from "../interfaces/Menu";
+import useSecureAxios from "./useSecureAxios";
 
 const useMenu = (category: string) => {
   const [menu, setMenu] = useState(Array<Menu>);
   const [loading, setLoading] = useState<boolean>(true);
+  const secureAxios = useSecureAxios();
   useEffect(() => {
-    fetch("http://localhost:3000/menus")
-      .then((res) => res.json())
-      .then((menu) => {
-        setMenu(menu.filter((items: Menu) => items.category === category)),
+    secureAxios("/menus")
+      .then((res) => {
+        setMenu(res.data.filter((items: Menu) => items.category === category)),
           setLoading(false);
       })
       .catch((err) => console.error(err));
-  }, [category, loading]);
+  }, [category, loading, secureAxios]);
   return { menu, loading };
 };
 
