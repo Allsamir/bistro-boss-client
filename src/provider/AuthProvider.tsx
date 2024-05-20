@@ -24,7 +24,7 @@ interface ChildProps {
 export const AuthContext = createContext<AuthContextType | null>(null);
 
 const AuthProvider: React.FC<ChildProps> = ({ children }) => {
-  const [user, setUser] = useState<null | User>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const createUser = (email: string, password: string) => {
     setLoading(true);
@@ -39,13 +39,8 @@ const AuthProvider: React.FC<ChildProps> = ({ children }) => {
   };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-        setLoading(false);
-      } else {
-        // User is signed out
-        // ...
-      }
+      setUser(user);
+      setLoading(false);
     });
     return () => {
       return unsubscribe();

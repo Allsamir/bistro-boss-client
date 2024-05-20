@@ -1,6 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+  const { user, logOutUser } = useAuth();
   const navbar = (
     <>
       <li>
@@ -52,11 +55,37 @@ const Navbar = () => {
         <a className="btn btn-ghost text-xl uppercase font-bold">Bistro Boss</a>
       </div>
       <div className="navbar-end">
-        <Link to={`/login`}>
-          <button className="btn btn-outline text-white uppercase">
-            Login
-          </button>
-        </Link>
+        {user ? (
+          <>
+            <img
+              src={user?.photoURL || ""}
+              alt={user?.displayName || ""}
+              className="w-12 rounded-full"
+              title={user?.displayName || ""}
+            />
+            <button
+              className="btn btn-outline uppercase text-white ml-4"
+              onClick={() => {
+                logOutUser().then(() => {
+                  Swal.fire({
+                    title: "Successful Logout",
+                    text: " Successfully Done",
+                    icon: "success",
+                    confirmButtonText: "Close",
+                  });
+                });
+              }}
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <Link to={`/login`}>
+            <button className="btn btn-outline text-white uppercase">
+              Login
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );
