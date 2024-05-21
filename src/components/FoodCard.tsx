@@ -5,6 +5,9 @@ interface ChildProps {
 }
 
 const FoodCard: React.FC<ChildProps> = ({ item }) => {
+  const handleAddtoCart = (id: string) => {
+    console.log(id);
+  };
   return (
     <div className="card bg-base-100 shadow-xl">
       <figure>
@@ -17,7 +20,12 @@ const FoodCard: React.FC<ChildProps> = ({ item }) => {
         <h2 className="card-title">{item.name}</h2>
         <p>{item.recipe}</p>
         <div className="card-actions justify-start mt-4">
-          <button className="btn btn-outline uppercase">Add to Cart</button>
+          <button
+            className="btn btn-outline border-0 border-b-4 uppercase text-yellow-500"
+            onClick={() => handleAddtoCart(item._id)}
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>

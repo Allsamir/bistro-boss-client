@@ -10,7 +10,10 @@ const Footer = () => {
         <Link to={`/menu`} className=" hover:text-yellow-600 link link-hover">
           Menu
         </Link>
-        <Link to={`/order`} className=" hover:text-yellow-600 link link-hover">
+        <Link
+          to={`/order/salad`}
+          className=" hover:text-yellow-600 link link-hover"
+        >
           Order
         </Link>
       </nav>
