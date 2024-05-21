@@ -1,12 +1,33 @@
 import React from "react";
 import Menu from "../interfaces/Menu";
+import useAuth from "../hooks/useAuth";
+import useSecureAxios from "../hooks/useSecureAxios";
+import Swal from "sweetalert2";
 interface ChildProps {
   item: Menu;
 }
 
 const FoodCard: React.FC<ChildProps> = ({ item }) => {
+  const { user } = useAuth();
+  const secureAxios = useSecureAxios();
   const handleAddtoCart = (id: string) => {
-    console.log(id);
+    if (user) {
+      const cartData = {
+        email: user.email,
+        cartItems: id,
+      };
+      secureAxios
+        .post(`/carts`, cartData)
+        .then((res) => {
+          Swal.fire({
+            title: "Successful",
+            text: `${res.data?.message}`,
+            icon: "success",
+            confirmButtonText: "Close",
+          });
+        })
+        .catch((err) => console.error(err));
+    }
   };
   return (
     <div className="card bg-base-100 shadow-xl">
