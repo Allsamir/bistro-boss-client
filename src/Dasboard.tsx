@@ -9,7 +9,7 @@ import { TiThMenu } from "react-icons/ti";
 import { MdRestaurantMenu } from "react-icons/md";
 import { FaShop } from "react-icons/fa6";
 
-const Dasboard = () => {
+const Dasboard: React.FC = () => {
   return (
     <div className="drawer drawer-end">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />

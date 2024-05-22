@@ -22,7 +22,7 @@ const FoodCard: React.FC<ChildProps> = ({ item }) => {
         .then((res) => {
           queryClient.invalidateQueries({ queryKey: ["cart", user?.email] });
           Swal.fire({
-            title: "Successful",
+            title: `${item.name} added to your cart`,
             text: `${res.data?.message}`,
             icon: "success",
             confirmButtonText: "Close",

@@ -1,6 +1,7 @@
 import PageTitle from "./PageTitle";
 import MenuCard from "./MenuCard";
 import useMenu from "../hooks/useMenu";
+import { Link } from "react-router-dom";
 
 const PopularMenu = () => {
   const { menu: popularMenu } = useMenu("popular");
@@ -17,7 +18,9 @@ const PopularMenu = () => {
         mb-12
       "
       >
-        <button className="btn btn-outline uppercase">View Our Menu</button>
+        <Link to={`/menu`}>
+          <button className="btn btn-outline uppercase">View Our Menu</button>
+        </Link>
       </div>
     </div>
   );
