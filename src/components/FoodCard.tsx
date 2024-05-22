@@ -20,7 +20,7 @@ const FoodCard: React.FC<ChildProps> = ({ item }) => {
       secureAxios
         .post(`/carts`, cartData)
         .then((res) => {
-          queryClient.invalidateQueries({ queryKey: ["cart"] });
+          queryClient.invalidateQueries({ queryKey: ["cart", user?.email] });
           Swal.fire({
             title: "Successful",
             text: `${res.data?.message}`,

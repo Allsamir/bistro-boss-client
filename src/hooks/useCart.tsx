@@ -5,7 +5,7 @@ const useCart = () => {
   const secureAxios = useSecureAxios();
   const { user } = useAuth();
   const { data: cart = [] } = useQuery({
-    queryKey: ["cart"],
+    queryKey: ["cart", user?.email],
     queryFn: async () =>
       await secureAxios.get(`/carts?email=${user?.email}`).then((res) => {
         return res.data;

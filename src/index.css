@@ -5,3 +5,8 @@
 .carousel {
   text-align: center !important;
 }
+.active {
+  background-color: unset !important;
+  color: black !important;
+  font-weight: 800 !important;
+}
