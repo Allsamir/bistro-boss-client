@@ -47,7 +47,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="text-black menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="uppercase text-black menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             {navbar}
           </ul>
@@ -65,12 +65,14 @@ const Navbar = () => {
               className="w-12 rounded-full"
               title={user?.displayName || ""}
             />
-            <button className="btn md:ml-4 ml-2 bg-transparent border-0 hover:border-0 hover:bg-transparent">
-              <IoCartSharp className="text-white text-2xl" />
-              <div className="badge badge-secondary">
-                {cartData?.cartItems.length || 0}
-              </div>
-            </button>
+            <Link to={`/dashboard/cart`}>
+              <button className="btn md:ml-4 ml-2 bg-transparent border-0 hover:border-0 hover:bg-transparent">
+                <IoCartSharp className="text-white text-2xl" />
+                <div className="badge badge-secondary">
+                  {cartData?.cartItems.length || 0}
+                </div>
+              </button>
+            </Link>
             <button
               className="btn btn-outline uppercase text-white md:ml-4 ml-2"
               onClick={() => {
