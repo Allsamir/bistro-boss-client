@@ -3,6 +3,7 @@ import Menu from "../interfaces/Menu";
 import useAuth from "../hooks/useAuth";
 import useSecureAxios from "../hooks/useSecureAxios";
 import Swal from "sweetalert2";
+import { queryClient } from "../main";
 interface ChildProps {
   item: Menu;
 }
@@ -19,6 +20,7 @@ const FoodCard: React.FC<ChildProps> = ({ item }) => {
       secureAxios
         .post(`/carts`, cartData)
         .then((res) => {
+          queryClient.invalidateQueries({ queryKey: ["cart"] });
           Swal.fire({
             title: "Successful",
             text: `${res.data?.message}`,

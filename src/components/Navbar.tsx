@@ -2,20 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import { IoCartSharp } from "react-icons/io5";
-import { useEffect, useState } from "react";
 import useCart from "../hooks/useCart";
 const Navbar = () => {
   const { user, logOutUser } = useAuth();
-  const [cartData, wilLoadData] = useCart();
-  const [cart, setCart] = useState<number>(0);
-  useEffect(() => {
-    if (wilLoadData) {
-      const [realData] = cartData;
-      if (realData) {
-        setCart(realData.cartItems.length);
-      }
-    }
-  }, [cartData, wilLoadData]);
+  const [cartData] = useCart();
+  console.log(cartData);
   const navbar = (
     <>
       <li>
@@ -77,7 +68,9 @@ const Navbar = () => {
             />
             <button className="btn ml-4 bg-transparent border-0 hover:border-0 hover:bg-transparent">
               <IoCartSharp className="text-white text-2xl" />
-              <div className="badge badge-secondary">{cart}</div>
+              <div className="badge badge-secondary">
+                {cartData?.cartItems.length || 0}
+              </div>
             </button>
             <button
               className="btn btn-outline uppercase text-white ml-4"
