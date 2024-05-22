@@ -5,7 +5,7 @@ import { IoCartSharp } from "react-icons/io5";
 import useCart from "../hooks/useCart";
 const Navbar = () => {
   const { user, logOutUser } = useAuth();
-  const [cartData] = useCart();
+  const cartData = useCart();
   const navbar = (
     <>
       <li>
@@ -69,7 +69,7 @@ const Navbar = () => {
               <button className="btn md:ml-4 ml-2 bg-transparent border-0 hover:border-0 hover:bg-transparent">
                 <IoCartSharp className="text-white text-2xl" />
                 <div className="badge badge-secondary">
-                  {cartData?.cartItems.length || 0}
+                  {cartData?.length || 0}
                 </div>
               </button>
             </Link>
