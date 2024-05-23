@@ -1,5 +1,5 @@
 interface Menu {
-  _id: string;
+  readonly _id: string;
   name: string;
   recipe: string;
   image: string;
