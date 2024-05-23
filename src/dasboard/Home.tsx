@@ -7,6 +7,7 @@ const Home = () => {
       <Helmet>
         <title>Bistro Boss | User Home</title>
       </Helmet>
+      <h1>Home</h1>
     </>
   );
 };

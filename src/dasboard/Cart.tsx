@@ -44,12 +44,12 @@ const Cart: React.FC = () => {
       <div className="container mx-auto px-4 mt-12">
         <div className="flex justify-evenly items-center">
           <div className="uppercase">
-            <p className="text-2xl font-semibold">
+            <p className="lg:text-2xl text-base font-semibold">
               Total Orders: {cartItems?.length}
             </p>
           </div>
           <div className="uppercase">
-            <p className="text-2xl font-semibold">
+            <p className="lg:text-2xl text-base font-semibold">
               Total Price:{" "}
               {cartItems.reduce((accumulator: number, currentValue: Menu) => {
                 return accumulator + currentValue.price;

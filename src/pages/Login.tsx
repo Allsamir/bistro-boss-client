@@ -11,6 +11,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import bgImage from "../assets/others/authentication.png";
 import img from "../assets/others/authentication2.png";
 import { Helmet } from "react-helmet-async";
+import { FcGoogle } from "react-icons/fc";
 type Inputs = {
   email: string;
   password: string;
@@ -22,7 +23,14 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isPasswordVisible, setPasswordVisible] = useState(false);
-  const { loginUser, setLoading } = useAuth();
+  const { loginUser, setLoading, googleProvider } = useAuth();
+  const signInWithGoogle = () => {
+    googleProvider()
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((err) => console.error(err));
+  };
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const { email, password, captchaValue } = data;
     if (validateCaptcha(captchaValue)) {
@@ -123,6 +131,12 @@ const Login: React.FC = () => {
                   Login
                 </button>
               </div>
+              <button
+                className="btn btn-outline text-sky-500"
+                onClick={signInWithGoogle}
+              >
+                <FcGoogle />
+              </button>
             </form>
             <p className="text-center pb-8">
               New Here?{" "}

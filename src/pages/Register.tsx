@@ -8,6 +8,8 @@ import useAuth from "../hooks/useAuth";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../config/firebase.config";
 import Swal from "sweetalert2";
+import usePublicAxios from "../hooks/usePublicAxios";
+import { FcGoogle } from "react-icons/fc";
 // import { auth } from "../config/firebase.config";
 type Inputs = {
   name: string;
@@ -22,8 +24,16 @@ const Register: React.FC = () => {
     formState: { errors },
   } = useForm<Inputs>();
   const [isPasswordVisible, setPasswordVisible] = useState(false);
-  const { createUser, setLoading } = useAuth();
+  const { createUser, setLoading, googleProvider } = useAuth();
   const navigate = useNavigate();
+  const publicAxios = usePublicAxios();
+  const signInWithGoogle = () => {
+    googleProvider()
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((err) => console.error(err));
+  };
   const onSubmit: SubmitHandler<Inputs> = (data, event) => {
     const { name, photoURL, email, password } = data;
     createUser(email, password)
@@ -34,12 +44,19 @@ const Register: React.FC = () => {
             photoURL: photoURL,
           })
             .then(() => {
-              Swal.fire({
-                title: "Successful Registation",
-                text: " Successfully Done",
-                icon: "success",
-                confirmButtonText: "Close",
-              }).then(() => navigate("/"), event?.target.reset());
+              publicAxios
+                .post(`/users`, { email: email, name: name })
+                .then((res) => {
+                  if (res.data.success) {
+                    Swal.fire({
+                      title: "Successful Registation",
+                      text: " Successfully Done",
+                      icon: "success",
+                      confirmButtonText: "Close",
+                    }).then(() => navigate("/"), event?.target.reset());
+                  }
+                })
+                .catch((err) => console.error(err));
             })
             .catch((error) => {
               console.error(error);
@@ -145,6 +162,12 @@ const Register: React.FC = () => {
                   Register
                 </button>
               </div>
+              <button
+                className="btn btn-outline text-sky-500"
+                onClick={signInWithGoogle}
+              >
+                <FcGoogle />
+              </button>
             </form>
             <p className="text-center pb-8">
               Already Registered?{" "}
