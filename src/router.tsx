@@ -12,6 +12,12 @@ import DHome from "./dasboard/Home";
 import Reservation from "./dasboard/Reservation";
 import Review from "./dasboard/Review";
 import Booking from "./dasboard/Booking";
+import AHome from "./adminD/Home";
+import AddItems from "./adminD/AddItems";
+import ManageItems from "./adminD/ManageItems";
+import AddBookings from "./adminD/AddBookings";
+import ManageBookings from "./adminD/ManageBookings";
+import AllUsers from "./adminD/AllUsers";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -53,7 +59,7 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "/dashboard",
+        path: "user-home",
         element: <DHome />,
       },
       {
@@ -71,6 +77,31 @@ const router = createBrowserRouter([
       {
         path: "bookings",
         element: <Booking />,
+      },
+      // Admin routes
+      {
+        path: "admin-home",
+        element: <AHome />,
+      },
+      {
+        path: "add-items",
+        element: <AddItems />,
+      },
+      {
+        path: "manage-items",
+        element: <ManageItems />,
+      },
+      {
+        path: "add-bookings",
+        element: <AddBookings />,
+      },
+      {
+        path: "manage-bookings",
+        element: <ManageBookings />,
+      },
+      {
+        path: "all-users",
+        element: <AllUsers />,
       },
     ],
   },

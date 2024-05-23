@@ -31,6 +31,14 @@ const Register: React.FC = () => {
     googleProvider()
       .then((result) => {
         console.log(result.user);
+        publicAxios
+          .post(`/users`, {
+            email: result.user.email,
+            name: result.user.displayName,
+          })
+          .then(() => {
+            navigate("/");
+          });
       })
       .catch((err) => console.error(err));
   };

@@ -1,15 +1,15 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 
-const Review: React.FC = () => {
+const Home: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Review</title>
+        <title>Bistro Boss | Admin Home</title>
       </Helmet>
-      <div>Review</div>
+      <div>Home</div>
     </>
   );
 };
 
-export default Review;
+export default Home;

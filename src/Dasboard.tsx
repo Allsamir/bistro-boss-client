@@ -1,4 +1,5 @@
 import React from "react";
+import { PiUsersThreeFill } from "react-icons/pi";
 import { NavLink, Outlet } from "react-router-dom";
 import { FaCartShopping } from "react-icons/fa6";
 import { FaHome } from "react-icons/fa";
@@ -8,8 +9,11 @@ import { BsCalendarCheckFill } from "react-icons/bs";
 import { TiThMenu } from "react-icons/ti";
 import { MdRestaurantMenu } from "react-icons/md";
 import { FaShop } from "react-icons/fa6";
+import { MdManageHistory } from "react-icons/md";
+import { FaRegPlusSquare } from "react-icons/fa";
 
 const Dasboard: React.FC = () => {
+  const isAdmin = true;
   return (
     <>
       <div className="drawer drawer-end">
@@ -36,36 +40,79 @@ const Dasboard: React.FC = () => {
           ></label>
           <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content uppercase">
             {/* Sidebar content here */}
-            <li>
-              <NavLink to={`/dashboard`}>
-                <FaHome />
-                User Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to={`/dashboard/cart`}>
-                <FaCartShopping />
-                My Cart
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to={`/dashboard/reservation`}>
-                <BsCalendarCheckFill />
-                Reservation
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to={`/dashboard/review`}>
-                <MdReviews />
-                Add Review
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to={`/dashboard/bookings`}>
-                <SlCalender />
-                My Bookings
-              </NavLink>
-            </li>
+            {isAdmin ? (
+              <>
+                <li>
+                  <NavLink to={`/dashboard/admin-home`}>
+                    <FaHome />
+                    Admin Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/dashboard/add-items`}>
+                    <FaRegPlusSquare />
+                    Add Items
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/dashboard/manage-items`}>
+                    <MdManageHistory />
+                    Manage Items
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/dashboard/add-bookings`}>
+                    <FaRegPlusSquare />
+                    Add Bookings
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/dashboard/manage-bookings`}>
+                    <MdManageHistory />
+                    Manage Bookings
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/dashboard/all-users`}>
+                    <PiUsersThreeFill />
+                    All Users
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <NavLink to={`/dashboard/user-home`}>
+                    <FaHome />
+                    User Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/dashboard/cart`}>
+                    <FaCartShopping />
+                    My Cart
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/dashboard/reservation`}>
+                    <BsCalendarCheckFill />
+                    Reservation
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/dashboard/review`}>
+                    <MdReviews />
+                    Add Review
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/dashboard/bookings`}>
+                    <SlCalender />
+                    My Bookings
+                  </NavLink>
+                </li>
+              </>
+            )}
             <div className="divider"></div>
             <li>
               <NavLink to={`/`}>

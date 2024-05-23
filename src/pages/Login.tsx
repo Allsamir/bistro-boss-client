@@ -12,6 +12,7 @@ import bgImage from "../assets/others/authentication.png";
 import img from "../assets/others/authentication2.png";
 import { Helmet } from "react-helmet-async";
 import { FcGoogle } from "react-icons/fc";
+import usePublicAxios from "../hooks/usePublicAxios";
 type Inputs = {
   email: string;
   password: string;
@@ -22,12 +23,20 @@ const Login: React.FC = () => {
   const { register, handleSubmit } = useForm<Inputs>();
   const navigate = useNavigate();
   const location = useLocation();
+  const publicAxios = usePublicAxios();
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const { loginUser, setLoading, googleProvider } = useAuth();
   const signInWithGoogle = () => {
     googleProvider()
       .then((result) => {
-        console.log(result.user);
+        publicAxios
+          .post(`/users`, {
+            email: result.user.email,
+            name: result.user.displayName,
+          })
+          .then(() => {
+            navigate(location.state || "/");
+          });
       })
       .catch((err) => console.error(err));
   };
