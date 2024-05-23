@@ -11,9 +11,10 @@ import { MdRestaurantMenu } from "react-icons/md";
 import { FaShop } from "react-icons/fa6";
 import { MdManageHistory } from "react-icons/md";
 import { FaRegPlusSquare } from "react-icons/fa";
+import useUser from "./hooks/useUser";
 
 const Dasboard: React.FC = () => {
-  const isAdmin = true;
+  const userData = useUser();
   return (
     <>
       <div className="drawer drawer-end">
@@ -40,7 +41,7 @@ const Dasboard: React.FC = () => {
           ></label>
           <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content uppercase">
             {/* Sidebar content here */}
-            {isAdmin ? (
+            {userData?.role === "admin" ? (
               <>
                 <li>
                   <NavLink to={`/dashboard/admin-home`}>

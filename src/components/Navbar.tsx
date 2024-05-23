@@ -3,9 +3,12 @@ import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import { IoCartSharp } from "react-icons/io5";
 import useCart from "../hooks/useCart";
+import { RiAdminFill } from "react-icons/ri";
+import useUser from "../hooks/useUser";
 const Navbar = () => {
   const { user, logOutUser } = useAuth();
   const cartData = useCart();
+  const userData = useUser();
   const navbar = (
     <>
       <li>
@@ -65,14 +68,21 @@ const Navbar = () => {
               className="w-12 rounded-full"
               title={user?.displayName || ""}
             />
-            <Link to={`/dashboard/cart`}>
-              <button className="btn md:ml-4 ml-2 bg-transparent border-0 hover:border-0 hover:bg-transparent">
-                <IoCartSharp className="text-white text-2xl" />
-                <div className="badge badge-secondary">
-                  {cartData?.length || 0}
-                </div>
-              </button>
-            </Link>
+            {userData?.role === "admin" ? (
+              <Link className="mx-6" to={`/dashboard/all-users`}>
+                <RiAdminFill className="text-2xl" />
+              </Link>
+            ) : (
+              <Link to={`/dashboard/cart`}>
+                <button className="btn md:ml-4 ml-2 bg-transparent border-0 hover:border-0 hover:bg-transparent">
+                  <IoCartSharp className="text-white text-2xl" />
+                  <div className="badge badge-secondary">
+                    {cartData?.length || 0}
+                  </div>
+                </button>
+              </Link>
+            )}
+
             <button
               className="btn btn-outline uppercase text-white md:ml-4 ml-2"
               onClick={() => {
