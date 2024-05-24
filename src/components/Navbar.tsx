@@ -7,7 +7,6 @@ import { RiAdminFill } from "react-icons/ri";
 const Navbar = () => {
   const { user, logOutUser, role } = useAuth();
   const cartData = useCart();
-  console.log(role);
   const navbar = (
     <>
       <li>

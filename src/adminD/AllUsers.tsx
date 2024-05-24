@@ -17,7 +17,33 @@ const AllUsers: React.FC = () => {
         return res.data;
       }),
   });
-  const handleDelete = (id: string) => {};
+  const handleDelete = (id: string, email: string) => {
+    Swal.fire({
+      title: "Are you sure to delete him/her?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        secureAxios
+          .delete(`/users?id=${id}&email=${email}`)
+          .then((res) => {
+            if (res.data.success) {
+              queryClient.invalidateQueries({ queryKey: ["users"] });
+              Swal.fire({
+                title: `Deleted!`,
+                text: `User has been deleted`,
+                icon: "success",
+              });
+            }
+          })
+          .catch((err) => console.error(err));
+      }
+    });
+  };
   const handleRole = (id: string) => {
     Swal.fire({
       title: "Are you sure to make him/her Admin?",
@@ -96,7 +122,7 @@ const AllUsers: React.FC = () => {
                       <th>
                         <button
                           className="btn btn-ghost text-3xl"
-                          onClick={() => handleDelete(user._id)}
+                          onClick={() => handleDelete(user._id, user.email)}
                         >
                           <AiFillDelete className="text-red-600" />
                         </button>

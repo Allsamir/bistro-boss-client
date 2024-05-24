@@ -2,6 +2,9 @@ import axios from "axios";
 const secureAxios = axios.create({
   baseURL: "http://localhost:3000",
   withCredentials: true,
+  headers: {
+    token: `${JSON.parse(localStorage.getItem("token") as string)}`,
+  },
 });
 
 const useSecureAxios = () => {

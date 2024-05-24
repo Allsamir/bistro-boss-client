@@ -12,6 +12,7 @@ import {
 import { auth } from "../config/firebase.config";
 import useSecureAxios from "../hooks/useSecureAxios";
 import NUser from "../interfaces/NUser";
+import usePublicAxios from "../hooks/usePublicAxios";
 
 interface AuthContextType {
   user: User | null;
@@ -34,6 +35,7 @@ const AuthProvider: React.FC<ChildProps> = ({ children }) => {
   const provider = new GoogleAuthProvider();
   const [loading, setLoading] = useState(true);
   const secureAxios = useSecureAxios();
+  const publicAxios = usePublicAxios();
   const [role, setRole] = useState<NUser | null>(null);
   const createUser = (email: string, password: string) => {
     setLoading(true);
@@ -53,6 +55,18 @@ const AuthProvider: React.FC<ChildProps> = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
+      if (user) {
+        publicAxios
+          .post(`/jwt`, { email: user.email })
+          .then((res) => {
+            localStorage.setItem("token", JSON.stringify(res.data.token));
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      } else {
+        localStorage.removeItem("token");
+      }
       setLoading(false);
     });
     secureAxios
