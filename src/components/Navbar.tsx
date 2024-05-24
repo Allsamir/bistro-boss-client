@@ -4,9 +4,11 @@ import Swal from "sweetalert2";
 import { IoCartSharp } from "react-icons/io5";
 import useCart from "../hooks/useCart";
 import { RiAdminFill } from "react-icons/ri";
+import useAdmin from "../hooks/useAdmin";
 const Navbar = () => {
-  const { user, logOutUser, role } = useAuth();
+  const { user, logOutUser } = useAuth();
   const cartData = useCart();
+  const { isAdmin } = useAdmin();
   const navbar = (
     <>
       <li>
@@ -66,7 +68,7 @@ const Navbar = () => {
               className="w-12 rounded-full"
               title={user?.displayName || ""}
             />
-            {role?.role === "admin" ? (
+            {isAdmin?.role === "admin" ? (
               <Link className="mx-6" to={`/dashboard/all-users`}>
                 <RiAdminFill className="text-2xl" />
               </Link>
@@ -80,7 +82,6 @@ const Navbar = () => {
                 </button>
               </Link>
             )}
-
             <button
               className="btn btn-outline uppercase text-white md:ml-4 ml-2"
               onClick={() => {

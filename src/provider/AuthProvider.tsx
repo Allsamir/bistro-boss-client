@@ -10,8 +10,6 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../config/firebase.config";
-import useSecureAxios from "../hooks/useSecureAxios";
-import NUser from "../interfaces/NUser";
 import usePublicAxios from "../hooks/usePublicAxios";
 
 interface AuthContextType {
@@ -21,7 +19,6 @@ interface AuthContextType {
   createUser: (email: string, password: string) => Promise<UserCredential>;
   loginUser: (email: string, password: string) => Promise<UserCredential>;
   googleProvider: () => Promise<UserCredential>;
-  role: NUser | null;
   logOutUser: () => Promise<void>;
 }
 
@@ -34,9 +31,7 @@ const AuthProvider: React.FC<ChildProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const provider = new GoogleAuthProvider();
   const [loading, setLoading] = useState(true);
-  const secureAxios = useSecureAxios();
   const publicAxios = usePublicAxios();
-  const [role, setRole] = useState<NUser | null>(null);
   const createUser = (email: string, password: string) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -69,13 +64,10 @@ const AuthProvider: React.FC<ChildProps> = ({ children }) => {
       }
       setLoading(false);
     });
-    secureAxios
-      .get(`/single-user?email=${user?.email}`)
-      .then((res) => setRole(res.data));
     return () => {
       return unsubscribe();
     };
-  }, [secureAxios, user]);
+  }, [publicAxios, user]);
   const authInfo = {
     user,
     loading,
@@ -84,7 +76,6 @@ const AuthProvider: React.FC<ChildProps> = ({ children }) => {
     loginUser,
     logOutUser,
     googleProvider,
-    role,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

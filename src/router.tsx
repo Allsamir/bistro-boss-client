@@ -18,6 +18,7 @@ import ManageItems from "./adminD/ManageItems";
 import AddBookings from "./adminD/AddBookings";
 import ManageBookings from "./adminD/ManageBookings";
 import AllUsers from "./adminD/AllUsers";
+import AdminRoute from "./private/AdminRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -101,7 +102,11 @@ const router = createBrowserRouter([
       },
       {
         path: "all-users",
-        element: <AllUsers />,
+        element: (
+          <AdminRoute>
+            <AllUsers />
+          </AdminRoute>
+        ),
       },
     ],
   },

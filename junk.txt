@@ -1,47 +1,20 @@
-import React from "react";
-import { PiUsersThreeFill } from "react-icons/pi";
-import { NavLink, Outlet } from "react-router-dom";
-import { FaCartShopping } from "react-icons/fa6";
-import { FaHome } from "react-icons/fa";
-import { MdReviews } from "react-icons/md";
-import { SlCalender } from "react-icons/sl";
-import { BsCalendarCheckFill } from "react-icons/bs";
-import { TiThMenu } from "react-icons/ti";
-import { MdRestaurantMenu } from "react-icons/md";
-import { FaShop } from "react-icons/fa6";
-import { MdManageHistory } from "react-icons/md";
-import { FaRegPlusSquare } from "react-icons/fa";
-import useAdmin from "./hooks/useAdmin";
+{role?.role === "admin" ? (
+              <Link className="mx-6" to={`/dashboard/all-users`}>
+                <RiAdminFill className="text-2xl" />
+              </Link>
+            ) : (
+              <Link to={`/dashboard/cart`}>
+                <button className="btn md:ml-4 ml-2 bg-transparent border-0 hover:border-0 hover:bg-transparent">
+                  <IoCartSharp className="text-white text-2xl" />
+                  <div className="badge badge-secondary">
+                    {/* {cartData?.length || 0} */}
+                  </div>
+                </button>
+              </Link>
+            )}
 
-const Dasboard: React.FC = () => {
-  const { isAdmin } = useAdmin();
-  return (
-    <>
-      <div className="drawer drawer-end">
-        <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content">
-          <div className="navbar bg-base-100">
-            <div className="flex-1">
-              <a className="text-xl uppercase font-bold">Bistro Boss</a>
-            </div>
-            <div className="flex-none">
-              <label htmlFor="my-drawer-4" className="drawer-button btn">
-                <TiThMenu className="text-xl" />
-              </label>
-            </div>
-          </div>
-          {/* Page content here */}
-          <Outlet></Outlet>
-        </div>
-        <div className="drawer-side">
-          <label
-            htmlFor="my-drawer-4"
-            aria-label="close sidebar"
-            className="drawer-overlay"
-          ></label>
-          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content uppercase">
-            {/* Sidebar content here */}
-            {isAdmin?.role === "admin" ? (
+
+             {role?.role === "admin" ? (
               <>
                 <li>
                   <NavLink to={`/dashboard/admin-home`}>
@@ -133,11 +106,3 @@ const Dasboard: React.FC = () => {
                 Order
               </NavLink>
             </li>
-          </ul>
-        </div>
-      </div>
-    </>
-  );
-};
-
-export default Dasboard;

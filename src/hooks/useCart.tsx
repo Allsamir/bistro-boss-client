@@ -10,6 +10,7 @@ const useCart = () => {
       await secureAxios.get(`/carts?email=${user?.email}`).then((res) => {
         return res.data;
       }),
+    enabled: !!user?.email,
   });
   return cart;
 };
