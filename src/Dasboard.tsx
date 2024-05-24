@@ -14,7 +14,7 @@ import { FaRegPlusSquare } from "react-icons/fa";
 import useAuth from "./hooks/useAuth";
 
 const Dasboard: React.FC = () => {
-  const { userRole } = useAuth();
+  const { role } = useAuth();
   return (
     <>
       <div className="drawer drawer-end">
@@ -41,7 +41,7 @@ const Dasboard: React.FC = () => {
           ></label>
           <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content uppercase">
             {/* Sidebar content here */}
-            {userRole?.role === "admin" ? (
+            {role?.role === "admin" ? (
               <>
                 <li>
                   <NavLink to={`/dashboard/admin-home`}>

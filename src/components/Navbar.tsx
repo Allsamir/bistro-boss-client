@@ -5,9 +5,9 @@ import { IoCartSharp } from "react-icons/io5";
 import useCart from "../hooks/useCart";
 import { RiAdminFill } from "react-icons/ri";
 const Navbar = () => {
-  const { user, logOutUser, userRole } = useAuth();
+  const { user, logOutUser, role } = useAuth();
   const cartData = useCart();
-  console.log(userRole);
+  console.log(role);
   const navbar = (
     <>
       <li>
@@ -67,7 +67,7 @@ const Navbar = () => {
               className="w-12 rounded-full"
               title={user?.displayName || ""}
             />
-            {userRole?.role === "admin" ? (
+            {role?.role === "admin" ? (
               <Link className="mx-6" to={`/dashboard/all-users`}>
                 <RiAdminFill className="text-2xl" />
               </Link>

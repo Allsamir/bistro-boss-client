@@ -10,7 +10,6 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../config/firebase.config";
-import { useQuery } from "@tanstack/react-query";
 import useSecureAxios from "../hooks/useSecureAxios";
 import NUser from "../interfaces/NUser";
 
@@ -21,7 +20,7 @@ interface AuthContextType {
   createUser: (email: string, password: string) => Promise<UserCredential>;
   loginUser: (email: string, password: string) => Promise<UserCredential>;
   googleProvider: () => Promise<UserCredential>;
-  userRole: NUser;
+  role: NUser | null;
   logOutUser: () => Promise<void>;
 }
 
@@ -35,14 +34,7 @@ const AuthProvider: React.FC<ChildProps> = ({ children }) => {
   const provider = new GoogleAuthProvider();
   const [loading, setLoading] = useState(true);
   const secureAxios = useSecureAxios();
-  const { data: role = [] } = useQuery({
-    queryKey: ["user"],
-    queryFn: async () =>
-      secureAxios
-        .get(`/single-user?email=${user?.email}`)
-        .then((res) => res.data),
-  });
-  const [userRole] = role;
+  const [role, setRole] = useState<NUser | null>(null);
   const createUser = (email: string, password: string) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -63,10 +55,13 @@ const AuthProvider: React.FC<ChildProps> = ({ children }) => {
       setUser(user);
       setLoading(false);
     });
+    secureAxios
+      .get(`/single-user?email=${user?.email}`)
+      .then((res) => setRole(res.data));
     return () => {
       return unsubscribe();
     };
-  }, []);
+  }, [secureAxios, user]);
   const authInfo = {
     user,
     loading,
@@ -75,7 +70,7 @@ const AuthProvider: React.FC<ChildProps> = ({ children }) => {
     loginUser,
     logOutUser,
     googleProvider,
-    userRole,
+    role,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
