@@ -11,10 +11,10 @@ import { MdRestaurantMenu } from "react-icons/md";
 import { FaShop } from "react-icons/fa6";
 import { MdManageHistory } from "react-icons/md";
 import { FaRegPlusSquare } from "react-icons/fa";
-import useUser from "./hooks/useUser";
+import useAuth from "./hooks/useAuth";
 
 const Dasboard: React.FC = () => {
-  const userData = useUser();
+  const { userRole } = useAuth();
   return (
     <>
       <div className="drawer drawer-end">
@@ -41,7 +41,7 @@ const Dasboard: React.FC = () => {
           ></label>
           <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content uppercase">
             {/* Sidebar content here */}
-            {userData?.role === "admin" ? (
+            {userRole?.role === "admin" ? (
               <>
                 <li>
                   <NavLink to={`/dashboard/admin-home`}>

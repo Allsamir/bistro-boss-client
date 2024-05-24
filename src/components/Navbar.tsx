@@ -4,11 +4,10 @@ import Swal from "sweetalert2";
 import { IoCartSharp } from "react-icons/io5";
 import useCart from "../hooks/useCart";
 import { RiAdminFill } from "react-icons/ri";
-import useUser from "../hooks/useUser";
 const Navbar = () => {
-  const { user, logOutUser } = useAuth();
+  const { user, logOutUser, userRole } = useAuth();
   const cartData = useCart();
-  const userData = useUser();
+  console.log(userRole);
   const navbar = (
     <>
       <li>
@@ -68,7 +67,7 @@ const Navbar = () => {
               className="w-12 rounded-full"
               title={user?.displayName || ""}
             />
-            {userData?.role === "admin" ? (
+            {userRole?.role === "admin" ? (
               <Link className="mx-6" to={`/dashboard/all-users`}>
                 <RiAdminFill className="text-2xl" />
               </Link>
