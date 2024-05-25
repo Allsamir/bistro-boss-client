@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { GrUpdate } from "react-icons/gr";
 import useSecureAxios from "../hooks/useSecureAxios";
 import { queryClient } from "../main";
+import { Link } from "react-router-dom";
 
 const ManageItems: React.FC = () => {
   const menus = useSecureMenu();
@@ -36,9 +37,6 @@ const ManageItems: React.FC = () => {
         });
       }
     });
-  };
-  const handleUpdate = (id: string) => {
-    console.log(id);
   };
   return (
     <>
@@ -88,12 +86,11 @@ const ManageItems: React.FC = () => {
                           <div className="font-bold">${menu.price}</div>
                         </td>
                         <td>
-                          <button
-                            className="btn btn-ghost text-3xl"
-                            onClick={() => handleUpdate(menu._id)}
-                          >
-                            <GrUpdate />
-                          </button>
+                          <Link to={`/dashboard/update-items/${menu._id}`}>
+                            <button className="btn btn-ghost text-3xl">
+                              <GrUpdate />
+                            </button>
+                          </Link>
                         </td>
                         <td>
                           <button

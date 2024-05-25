@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import PageTitle from "../components/PageTitle";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { FaUtensils } from "react-icons/fa6";
-import usePublicAxios from "../hooks/usePublicAxios";
-import useSecureAxios from "../hooks/useSecureAxios";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import usePublicAxios from "../hooks/usePublicAxios";
+import { useForm, SubmitHandler } from "react-hook-form";
+import useSecureAxios from "../hooks/useSecureAxios";
+import { FaUtensils } from "react-icons/fa6";
+import Menu from "../interfaces/Menu";
 enum GenderEnum {
   salad = "salad",
   pizza = "pizza",
@@ -22,7 +24,8 @@ type IFormInput = {
 };
 const imageBBKEY = import.meta.env.VITE_IMAGEBB_API_KEY;
 const imageHostingAPI = `https://api.imgbb.com/1/upload?key=${imageBBKEY}`;
-const AddItems: React.FC = () => {
+const UpdateItems: React.FC = () => {
+  const menu = useLoaderData() as Menu;
   const { register, handleSubmit } = useForm<IFormInput>();
   const publicAxios = usePublicAxios();
   const secureAxios = useSecureAxios();
@@ -46,7 +49,7 @@ const AddItems: React.FC = () => {
             image: res.data.data.url,
           };
           secureAxios
-            .post(`/menus`, menuItem)
+            .patch(`/menus/${menu._id}`, menuItem)
             .then((saveMenu) => {
               console.log(saveMenu);
               if (saveMenu.data.success) {
@@ -89,9 +92,9 @@ const AddItems: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Add Items</title>
+        <title>Bisstro Boss | Update Items</title>
       </Helmet>
-      <PageTitle heading="Add an item" subHeading="Whats new?"></PageTitle>
+      <PageTitle heading="update an item" subHeading="Refesh info"></PageTitle>
       <div className="bg-slate-100 p-16">
         <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-control">
@@ -105,6 +108,7 @@ const AddItems: React.FC = () => {
               placeholder="Recipe Name"
               className="input input-bordered"
               required
+              defaultValue={menu?.name}
               {...register("name")}
             />
           </div>
@@ -118,6 +122,7 @@ const AddItems: React.FC = () => {
               <select
                 {...register("category")}
                 className="select select-bordered w-full"
+                defaultValue={menu?.category}
               >
                 <option value={`salad`}>Salad</option>
                 <option value={`soup`}>Soup</option>
@@ -138,6 +143,7 @@ const AddItems: React.FC = () => {
                 className="input input-bordered"
                 required
                 {...register("price")}
+                defaultValue={menu?.price}
               />
             </div>
           </div>
@@ -152,6 +158,7 @@ const AddItems: React.FC = () => {
               placeholder="Recipe Details"
               {...register("recipe")}
               rows={10}
+              defaultValue={menu?.recipe}
             ></textarea>
           </div>
           <div className="form-control">
@@ -173,7 +180,7 @@ const AddItems: React.FC = () => {
               type="submit"
               onClick={() => setLoading(true)}
             >
-              Add Recipe <FaUtensils></FaUtensils>{" "}
+              Update Recipe <FaUtensils></FaUtensils>{" "}
               {loading && (
                 <span className="loading loading-spinner loading-xs"></span>
               )}
@@ -181,9 +188,8 @@ const AddItems: React.FC = () => {
           </div>
         </form>
       </div>
-      {/* )} */}
     </>
   );
 };
 
-export default AddItems;
+export default UpdateItems;

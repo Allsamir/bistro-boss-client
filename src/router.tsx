@@ -19,6 +19,7 @@ import AddBookings from "./adminD/AddBookings";
 import ManageBookings from "./adminD/ManageBookings";
 import AllUsers from "./adminD/AllUsers";
 import AdminRoute from "./private/AdminRoute";
+import UpdateItems from "./adminD/UpdateItems";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -103,6 +104,24 @@ const router = createBrowserRouter([
             <ManageItems />
           </AdminRoute>
         ),
+      },
+      {
+        path: "update-items/:menuID",
+        element: (
+          <AdminRoute>
+            <UpdateItems></UpdateItems>
+          </AdminRoute>
+        ),
+        loader: async ({ params }) => {
+          try {
+            const menu = await fetch(
+              `http://localhost:3000/menus/${params.menuID}`,
+            ).then((res) => res.json());
+            return menu;
+          } catch (err) {
+            console.error(err);
+          }
+        },
       },
       {
         path: "add-bookings",
