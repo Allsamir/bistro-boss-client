@@ -3,9 +3,31 @@ import { Helmet } from "react-helmet-async";
 import PageTitle from "../components/PageTitle";
 import useSecureMenu from "../hooks/useSecureMenu";
 import Menu from "../interfaces/Menu";
+import { AiFillDelete } from "react-icons/ai";
+import Swal from "sweetalert2";
+import { GrUpdate } from "react-icons/gr";
 
 const ManageItems: React.FC = () => {
   const menus = useSecureMenu();
+  const handleDelete = (id: string) => {
+    console.log(id);
+    Swal.fire({
+      title: "Are you sure to delete this menu",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        //
+      }
+    });
+  };
+  const handleUpdate = (id: string) => {
+    console.log(id);
+  };
   return (
     <>
       <Helmet>
@@ -15,7 +37,7 @@ const ManageItems: React.FC = () => {
       <div className="container mx-auto px-4">
         <div>
           <div className="title">
-            <p className="lg:text-2xl text-base font-semibold">
+            <p className="lg:text-3xl uppercase text-base font-semibold text-center">
               Total Items: {menus?.length}
             </p>
           </div>
@@ -35,45 +57,42 @@ const ManageItems: React.FC = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {/* row 1 */}
-                    <tr>
-                      <th>
-                        <label>
-                          <input type="checkbox" className="checkbox" />
-                        </label>
-                      </th>
-                      <td>
-                        <div className="flex items-center gap-3">
-                          <div className="avatar">
-                            <div className="mask mask-squircle w-12 h-12">
-                              <img
-                                src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png"
-                                alt="Avatar Tailwind CSS Component"
-                              />
+                    {menus?.map((menu: Menu, index: number) => (
+                      <tr key={index}>
+                        <th>{index + 1}</th>
+                        <td>
+                          <div className="flex items-center gap-3">
+                            <div className="avatar">
+                              <div className="mask mask-squircle w-24 h-24">
+                                <img src={menu.image} alt={menu.image} />
+                              </div>
                             </div>
                           </div>
-                          <div>
-                            <div className="font-bold">Hart Hagerty</div>
-                            <div className="text-sm opacity-50">
-                              United States
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        Zemlak, Daniel and Leannon
-                        <br />
-                        <span className="badge badge-ghost badge-sm">
-                          Desktop Support Technician
-                        </span>
-                      </td>
-                      <td>Purple</td>
-                      <th>
-                        <button className="btn btn-ghost btn-xs">
-                          details
-                        </button>
-                      </th>
-                    </tr>
+                        </td>
+                        <td>
+                          <div className="font-bold">{menu.name}</div>
+                        </td>
+                        <td>
+                          <div className="font-bold">${menu.price}</div>
+                        </td>
+                        <td>
+                          <button
+                            className="btn btn-ghost text-3xl"
+                            onClick={() => handleUpdate(menu._id)}
+                          >
+                            <GrUpdate />
+                          </button>
+                        </td>
+                        <td>
+                          <button
+                            className="btn btn-ghost text-3xl"
+                            onClick={() => handleDelete(menu._id)}
+                          >
+                            <AiFillDelete className="text-red-600" />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
