@@ -28,7 +28,6 @@ const useSecureAxios = () => {
   // Add a response interceptor
   secureAxios.interceptors.response.use(
     (response) => {
-      console.log("Response Data:", response.data); // Logging response data
       return response;
     },
     (error) => {

@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import useAuth from "../hooks/useAuth";
 import useAdmin from "../hooks/useAdmin";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 interface ChildProps {
   children: ReactNode;
@@ -10,7 +10,6 @@ interface ChildProps {
 const AdminRoute: React.FC<ChildProps> = ({ children }) => {
   const { user, loading } = useAuth();
   const { isAdmin, isAdminPending } = useAdmin();
-  const location = useLocation();
   if (loading || isAdminPending) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -21,7 +20,7 @@ const AdminRoute: React.FC<ChildProps> = ({ children }) => {
   if (user && isAdmin.role === "admin") {
     return children;
   }
-  return <Navigate to={`/login`} state={location.pathname} replace></Navigate>;
+  return <Navigate to={`/login`} replace></Navigate>;
 };
 
 export default AdminRoute;
