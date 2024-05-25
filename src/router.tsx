@@ -82,23 +82,43 @@ const router = createBrowserRouter([
       // Admin routes
       {
         path: "admin-home",
-        element: <AHome />,
+        element: (
+          <AdminRoute>
+            <AHome />
+          </AdminRoute>
+        ),
       },
       {
         path: "add-items",
-        element: <AddItems />,
+        element: (
+          <AdminRoute>
+            <AddItems />
+          </AdminRoute>
+        ),
       },
       {
         path: "manage-items",
-        element: <ManageItems />,
+        element: (
+          <AdminRoute>
+            <ManageItems />
+          </AdminRoute>
+        ),
       },
       {
         path: "add-bookings",
-        element: <AddBookings />,
+        element: (
+          <AdminRoute>
+            <AddBookings />
+          </AdminRoute>
+        ),
       },
       {
         path: "manage-bookings",
-        element: <ManageBookings />,
+        element: (
+          <AdminRoute>
+            <ManageBookings />
+          </AdminRoute>
+        ),
       },
       {
         path: "all-users",

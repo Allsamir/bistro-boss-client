@@ -16,7 +16,6 @@ const useSecureAxios = () => {
       if (token) {
         config.headers.token = JSON.parse(token);
       }
-      console.log("Request Config:", config); // Logging the request config
       return config;
     },
     (error) => {
