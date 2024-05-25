@@ -6,9 +6,12 @@ import Menu from "../interfaces/Menu";
 import { AiFillDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { GrUpdate } from "react-icons/gr";
+import useSecureAxios from "../hooks/useSecureAxios";
+import { queryClient } from "../main";
 
 const ManageItems: React.FC = () => {
   const menus = useSecureMenu();
+  const secureAxios = useSecureAxios();
   const handleDelete = (id: string) => {
     console.log(id);
     Swal.fire({
@@ -21,7 +24,16 @@ const ManageItems: React.FC = () => {
       confirmButtonText: "Yes!",
     }).then((result) => {
       if (result.isConfirmed) {
-        //
+        secureAxios.delete(`/menus?id=${id}`).then((res) => {
+          if (res.data.success) {
+            queryClient.invalidateQueries({ queryKey: ["menuS"] });
+            Swal.fire({
+              title: `Deleted!`,
+              text: `${res.data.message}`,
+              icon: "success",
+            });
+          }
+        });
       }
     });
   };
