@@ -15,7 +15,6 @@ const Reservation: React.FC = () => {
   const totalPrice = carts.reduce((accumulator: number, currentValue: Menu) => {
     return accumulator + currentValue.price;
   }, 0);
-  console.log(totalPrice);
   const [clientSecret, setClientSecret] = useState("");
   useEffect(() => {
     const fetchClientSecret = async () => {

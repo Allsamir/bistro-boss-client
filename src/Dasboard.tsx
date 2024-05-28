@@ -128,7 +128,7 @@ const Dasboard: React.FC = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to={`/order`}>
+              <NavLink to={`/order/salad`}>
                 <FaShop />
                 Order
               </NavLink>
