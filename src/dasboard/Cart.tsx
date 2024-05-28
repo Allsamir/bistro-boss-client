@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import useSecureAxios from "../hooks/useSecureAxios";
 import useAuth from "../hooks/useAuth";
 import { queryClient } from "../main";
+import { Link } from "react-router-dom";
 const Cart: React.FC = () => {
   const cartItems = useCart();
   const { user } = useAuth();
@@ -57,8 +58,11 @@ const Cart: React.FC = () => {
             </p>
           </div>
           <div>
-            <button className="btn btn-outline text-white uppercase bg-yellow-500">
-              Pay
+            <button
+              className="btn btn-outline text-white uppercase bg-yellow-500"
+              disabled={cartItems.length > 0 ? false : true}
+            >
+              <Link to={`/dashboard/reservation`}>Pay</Link>
             </button>
           </div>
         </div>
