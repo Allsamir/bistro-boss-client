@@ -8,48 +8,32 @@ import { FormEvent, useState } from "react";
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
-  const [errorMessage, setErrorMessage] = useState("");
+  const [message, setMessage] = useState(null || "");
+  const [isPending, setPending] = useState(false);
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     if (!stripe || !elements) {
-      // Stripe.js hasn't yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
-      return;
-    }
-    const { error: submitError } = await elements.submit();
-    if (submitError) {
-      // Show error to your customer
-      setErrorMessage(submitError.message as string);
       return;
     }
 
-    // Create the PaymentIntent and obtain clientSecret from your server endpoint
-    const res = await fetch("/create-intent", {
-      method: "POST",
-    });
+    setPending(true);
 
-    const { client_secret: clientSecret } = await res.json();
-
-    const { error } = await stripe.confirmPayment({
-      //`Elements` instance that was used to create the Payment Element
+    const { error, paymentIntent } = await stripe.confirmPayment({
       elements,
-      clientSecret,
       confirmParams: {
-        return_url: "https://example.com/order/123/complete",
+        return_url: `${window.location.origin}/dashboard/payment-completion`,
       },
+      redirect: "if_required",
     });
 
     if (error) {
-      // This point will only be reached if there is an immediate error when
-      // confirming the payment. Show error to your customer (for example, payment
-      // details incomplete)
-      setErrorMessage(error.message as string);
+      setMessage(error.message || "");
+    } else if (paymentIntent.status === "succeeded") {
+      setMessage("Payment status: " + paymentIntent.status + "🎉");
     } else {
-      // Your customer will be redirected to your `return_url`. For some payment
-      // methods like iDEAL, your customer will be redirected to an intermediate
-      // site first to authorize the payment, then redirected to the `return_url`.
-      setErrorMessage("");
+      setMessage("Unexpected status");
     }
+    setPending(false);
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -57,12 +41,11 @@ const CheckoutForm = () => {
       <button
         type="submit"
         className="btn btn-outline mt-4"
-        disabled={!stripe || !elements}
+        disabled={isPending}
       >
-        Pay
+        {isPending ? "Pending" : "Pay Now"}
       </button>
-      {/* Show error message to your customers */}
-      {errorMessage && <div>{errorMessage}</div>}
+      {message && <p className="mt-4">{message}</p>}
     </form>
   );
 };

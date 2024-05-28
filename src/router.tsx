@@ -20,6 +20,7 @@ import ManageBookings from "./adminD/ManageBookings";
 import AllUsers from "./adminD/AllUsers";
 import AdminRoute from "./private/AdminRoute";
 import UpdateItems from "./adminD/UpdateItems";
+import PaymentCompletion from "./dasboard/PaymentCompletion";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: "bookings",
         element: <Booking />,
+      },
+      {
+        path: "payment-completion",
+        element: <PaymentCompletion />,
       },
       // Admin routes
       {
