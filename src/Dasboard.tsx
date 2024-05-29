@@ -11,6 +11,7 @@ import { MdRestaurantMenu } from "react-icons/md";
 import { FaShop } from "react-icons/fa6";
 import { MdManageHistory } from "react-icons/md";
 import { FaRegPlusSquare } from "react-icons/fa";
+import { FaHistory } from "react-icons/fa";
 import useAdmin from "./hooks/useAdmin";
 
 const Dasboard: React.FC = () => {
@@ -98,6 +99,12 @@ const Dasboard: React.FC = () => {
                   <NavLink to={`/dashboard/reservation`}>
                     <BsCalendarCheckFill />
                     Reservation
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/dashboard/payment-history`}>
+                    <FaHistory />
+                    Payment History
                   </NavLink>
                 </li>
                 <li>

@@ -21,6 +21,7 @@ import AllUsers from "./adminD/AllUsers";
 import AdminRoute from "./private/AdminRoute";
 import UpdateItems from "./adminD/UpdateItems";
 import PaymentCompletion from "./dasboard/PaymentCompletion";
+import PaymentHistory from "./dasboard/PaymentHistory";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
       {
         path: "payment-completion",
         element: <PaymentCompletion />,
+      },
+      {
+        path: "payment-history",
+        element: <PaymentHistory />,
       },
       // Admin routes
       {
