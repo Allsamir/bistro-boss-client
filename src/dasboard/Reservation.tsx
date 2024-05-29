@@ -28,7 +28,9 @@ const Reservation: React.FC = () => {
         console.error(err);
       }
     };
-    fetchClientSecret();
+    if (totalPrice > 0) {
+      fetchClientSecret();
+    }
   }, [secureAxios, totalPrice]);
   return (
     <>

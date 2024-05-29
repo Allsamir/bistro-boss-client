@@ -4,6 +4,10 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 import { FormEvent, useState } from "react";
+import useSecureAxios from "../hooks/useSecureAxios";
+import useAuth from "../hooks/useAuth";
+import useCart from "../hooks/useCart";
+import Menu from "../interfaces/Menu";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -11,6 +15,12 @@ const CheckoutForm = () => {
   const [message, setMessage] = useState(null || "");
   const [sucessfullyPayment, setSuccessfullPayment] = useState(false);
   const [isPending, setPending] = useState(false);
+  const secureAxios = useSecureAxios();
+  const carts = useCart();
+  const totalPrice = carts.reduce((accumulator: number, currentValue: Menu) => {
+    return accumulator + currentValue.price;
+  }, 0);
+  const { user } = useAuth();
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     if (!stripe || !elements) {
@@ -25,7 +35,6 @@ const CheckoutForm = () => {
       },
       redirect: "if_required",
     });
-    console.log(paymentIntent);
     if (error) {
       setMessage(error.message || "");
     } else if (paymentIntent.status === "succeeded") {
@@ -36,6 +45,19 @@ const CheckoutForm = () => {
           paymentIntent.id,
       );
       setSuccessfullPayment(true);
+      const paymentInfo = {
+        email: user?.email,
+        name: user?.displayName,
+        price: totalPrice,
+        transactionID: paymentIntent.id,
+        time: new Date(), // utc data convert. use moment.js to convert to local date time
+        order: carts.map((cartItems: Menu) => cartItems._id),
+        status: "pending",
+      };
+      const res = await secureAxios.post(`/payments`, {
+        paymentInfo: paymentInfo,
+      });
+      console.log(res.data, "Payment send");
     } else {
       setMessage("Unexpected status");
     }
