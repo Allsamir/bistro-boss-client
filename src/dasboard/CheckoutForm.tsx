@@ -8,6 +8,7 @@ import useSecureAxios from "../hooks/useSecureAxios";
 import useAuth from "../hooks/useAuth";
 import useCart from "../hooks/useCart";
 import Menu from "../interfaces/Menu";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -16,6 +17,7 @@ const CheckoutForm = () => {
   const [sucessfullyPayment, setSuccessfullPayment] = useState(false);
   const [isPending, setPending] = useState(false);
   const secureAxios = useSecureAxios();
+  const navigate = useNavigate();
   const carts = useCart();
   const totalPrice = carts.reduce((accumulator: number, currentValue: Menu) => {
     return accumulator + currentValue.price;
@@ -58,6 +60,9 @@ const CheckoutForm = () => {
         paymentInfo: paymentInfo,
       });
       console.log(res.data, "Payment send");
+      if (res) {
+        navigate("/dashboard/payment-history");
+      }
     } else {
       setMessage("Unexpected status");
     }
