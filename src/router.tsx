@@ -11,12 +11,9 @@ import Cart from "./dasboard/Cart";
 import DHome from "./dasboard/Home";
 import Reservation from "./dasboard/Reservation";
 import Review from "./dasboard/Review";
-import Booking from "./dasboard/Booking";
 import AHome from "./adminD/Home";
 import AddItems from "./adminD/AddItems";
 import ManageItems from "./adminD/ManageItems";
-import AddBookings from "./adminD/AddBookings";
-import ManageBookings from "./adminD/ManageBookings";
 import AllUsers from "./adminD/AllUsers";
 import AdminRoute from "./private/AdminRoute";
 import UpdateItems from "./adminD/UpdateItems";
@@ -79,10 +76,6 @@ const router = createBrowserRouter([
         element: <Review />,
       },
       {
-        path: "bookings",
-        element: <Booking />,
-      },
-      {
         path: "payment-completion",
         element: <PaymentCompletion />,
       },
@@ -132,22 +125,6 @@ const router = createBrowserRouter([
             console.error(err);
           }
         },
-      },
-      {
-        path: "add-bookings",
-        element: (
-          <AdminRoute>
-            <AddBookings />
-          </AdminRoute>
-        ),
-      },
-      {
-        path: "manage-bookings",
-        element: (
-          <AdminRoute>
-            <ManageBookings />
-          </AdminRoute>
-        ),
       },
       {
         path: "all-users",

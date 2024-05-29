@@ -30,7 +30,7 @@ const Home: React.FC = () => {
               <FaSackDollar className="text-4xl" />
             </div>
             <div className="stat-title">Revenue</div>
-            <div className="stat-value">${appData.revenue}</div>
+            <div className="stat-value">${appData?.revenue}</div>
           </div>
 
           <div className="stat">
@@ -38,7 +38,7 @@ const Home: React.FC = () => {
               <PiUsersThreeFill className="text-4xl" />
             </div>
             <div className="stat-title">Total Users</div>
-            <div className="stat-value">{appData.users}</div>
+            <div className="stat-value">{appData?.users}</div>
           </div>
 
           <div className="stat">
@@ -46,14 +46,14 @@ const Home: React.FC = () => {
               <MdRestaurantMenu className="text-4xl" />
             </div>
             <div className="stat-title">Menus</div>
-            <div className="stat-value">{appData.menus}</div>
+            <div className="stat-value">{appData?.menus}</div>
           </div>
           <div className="stat">
             <div className="stat-figure text-secondary">
               <FcPositiveDynamic className="text-4xl" />
             </div>
             <div className="stat-title">Orders</div>
-            <div className="stat-value">{appData.orders}</div>
+            <div className="stat-value">{appData?.orders}</div>
           </div>
         </div>
       </div>

@@ -4,7 +4,6 @@ import { NavLink, Outlet } from "react-router-dom";
 import { FaCartShopping } from "react-icons/fa6";
 import { FaHome } from "react-icons/fa";
 import { MdReviews } from "react-icons/md";
-import { SlCalender } from "react-icons/sl";
 import { BsCalendarCheckFill } from "react-icons/bs";
 import { TiThMenu } from "react-icons/ti";
 import { MdRestaurantMenu } from "react-icons/md";
@@ -63,18 +62,6 @@ const Dasboard: React.FC = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to={`/dashboard/add-bookings`}>
-                    <FaRegPlusSquare />
-                    Add Bookings
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to={`/dashboard/manage-bookings`}>
-                    <MdManageHistory />
-                    Manage Bookings
-                  </NavLink>
-                </li>
-                <li>
                   <NavLink to={`/dashboard/all-users`}>
                     <PiUsersThreeFill />
                     All Users
@@ -111,12 +98,6 @@ const Dasboard: React.FC = () => {
                     Add Review
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink to={`/dashboard/bookings`}>
-                    <SlCalender />
-                    My Bookings
-                  </NavLink>
-                </li>
               </>
             ) : (
               <>
@@ -148,12 +129,6 @@ const Dasboard: React.FC = () => {
                   <NavLink to={`/dashboard/review`}>
                     <MdReviews />
                     Add Review
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to={`/dashboard/bookings`}>
-                    <SlCalender />
-                    My Bookings
                   </NavLink>
                 </li>
               </>
