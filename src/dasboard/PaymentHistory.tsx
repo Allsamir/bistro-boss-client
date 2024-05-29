@@ -41,8 +41,10 @@ const PaymentHistory: React.FC = () => {
                 {payments.map((payment: Payment, index: number) => (
                   <tr key={index}>
                     <th>{index + 1}</th>
-                    <td className="font-bold">${payment.price}</td>
-                    <td className="font-bold">{payment.transactionID}</td>
+                    <td className="font-bold text-red-600">${payment.price}</td>
+                    <td className="font-bold text-green-600">
+                      {payment.transactionID}
+                    </td>
                     <td className="font-bold">{payment.status}</td>
                   </tr>
                 ))}

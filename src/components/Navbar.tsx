@@ -7,8 +7,8 @@ import { RiAdminFill } from "react-icons/ri";
 import useAdmin from "../hooks/useAdmin";
 const Navbar = () => {
   const { user, logOutUser } = useAuth();
-  const cartData = useCart();
-  const { isAdmin } = useAdmin();
+  const cartData = useCart(); // enable this when user is loggedIn because this requires token and the token is created when user has loggedIn or registered
+  const { isAdmin } = useAdmin(); // enable this when user is loggedIn because this requires token and the token is created when user has loggedIn or registered
   const navbar = (
     <>
       <li>
@@ -69,11 +69,11 @@ const Navbar = () => {
               title={user?.displayName || ""}
             />
             {isAdmin?.role === "admin" ? (
-              <Link className="mx-6" to={`/dashboard/all-users`}>
+              <Link className="mx-6" to={`/dashboard/admin-home`}>
                 <RiAdminFill className="text-2xl" />
               </Link>
             ) : (
-              <Link to={`/dashboard/cart`}>
+              <Link to={`/dashboard/user-home`}>
                 <button className="btn md:ml-4 ml-2 bg-transparent border-0 hover:border-0 hover:bg-transparent">
                   <IoCartSharp className="text-white text-2xl" />
                   <div className="badge badge-secondary">

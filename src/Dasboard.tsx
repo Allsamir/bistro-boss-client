@@ -80,6 +80,43 @@ const Dasboard: React.FC = () => {
                     All Users
                   </NavLink>
                 </li>
+                <div className="divider"></div>
+                <li>
+                  <NavLink to={`/dashboard/user-home`}>
+                    <FaHome />
+                    User Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/dashboard/cart`}>
+                    <FaCartShopping />
+                    My Cart
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/dashboard/reservation`}>
+                    <BsCalendarCheckFill />
+                    Reservation
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/dashboard/payment-history`}>
+                    <FaHistory />
+                    Payment History
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/dashboard/review`}>
+                    <MdReviews />
+                    Add Review
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/dashboard/bookings`}>
+                    <SlCalender />
+                    My Bookings
+                  </NavLink>
+                </li>
               </>
             ) : (
               <>
