@@ -52,9 +52,12 @@ const Cart: React.FC = () => {
           <div className="uppercase">
             <p className="lg:text-2xl text-base font-semibold">
               Total Price:{" "}
-              {cartItems.reduce((accumulator: number, currentValue: Menu) => {
-                return accumulator + currentValue.price;
-              }, 0)}
+              <span className="text-red-600">
+                $
+                {cartItems.reduce((accumulator: number, currentValue: Menu) => {
+                  return accumulator + currentValue.price;
+                }, 0)}
+              </span>
             </p>
           </div>
           <div>
