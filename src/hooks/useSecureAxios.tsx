@@ -4,7 +4,7 @@ import { auth } from "../config/firebase.config";
 import Swal from "sweetalert2";
 
 const secureAxios = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://cafe-gratitude-server.vercel.app/",
   withCredentials: true,
 });
 

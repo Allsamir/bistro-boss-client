@@ -16,10 +16,10 @@ interface Reviews {
 }
 
 const Testimonial: React.FC = () => {
-  const [reviews, setReviews] = useState(Array<Reviews>);
+  const [reviews, setReviews] = useState<Reviews[]>([]);
   const secureAxios = useSecureAxios();
   useEffect(() => {
-    secureAxios("/reviews").then((res) => setReviews(res.data));
+    secureAxios.get("/reviews").then((res) => setReviews(res.data));
   }, [secureAxios]);
   return (
     <div>

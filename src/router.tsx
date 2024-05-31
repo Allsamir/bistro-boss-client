@@ -120,7 +120,7 @@ const router = createBrowserRouter([
         loader: async ({ params }) => {
           try {
             const menu = await fetch(
-              `http://localhost:3000/menus/${params.menuID}`,
+              `cafe-gratitude-server.vercel.app/menus/${params.menuID}`,
             ).then((res) => res.json());
             return menu;
           } catch (err) {
