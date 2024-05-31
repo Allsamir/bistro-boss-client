@@ -12,7 +12,11 @@ const Home: React.FC = () => {
   const { data: userStats } = useQuery({
     queryKey: ["user-stats"],
     queryFn: async () =>
-      (await secureAxios.get(`/user-stats?email=${user?.email}`)).data,
+      (
+        await secureAxios.get(
+          `/user-stats?email=${user?.email}&name=${user?.displayName}`,
+        )
+      ).data,
   });
   return (
     <>
