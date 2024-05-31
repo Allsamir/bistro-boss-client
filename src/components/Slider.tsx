@@ -27,7 +27,7 @@ const Slider = () => {
         <SwiperSlide>
           <img src={slider1} alt="" />
           <h3
-            className="text-4xl uppercase text-black text-center absolute top-1/2 left-1/2"
+            className="md:text-4xl text-2xl uppercase text-white text-center absolute top-1/2 left-1/2"
             style={{ transform: " translate(-50%, -50%)" }}
           >
             Salads
@@ -37,7 +37,7 @@ const Slider = () => {
           {" "}
           <img src={slider2} alt="" />
           <h3
-            className="text-4xl uppercase text-black text-center absolute top-1/2 left-1/2"
+            className="md:text-4xl text-2xl uppercase text-white text-center absolute top-1/2 left-1/2"
             style={{ transform: " translate(-50%, -50%)" }}
           >
             Pizzas
@@ -47,7 +47,7 @@ const Slider = () => {
           {" "}
           <img src={slider3} alt="" />
           <h3
-            className="text-4xl uppercase text-black text-center absolute top-1/2 left-1/2"
+            className="md:text-4xl text-2xl uppercase text-white text-center absolute top-1/2 left-1/2"
             style={{ transform: " translate(-50%, -50%)" }}
           >
             Soups
@@ -57,7 +57,7 @@ const Slider = () => {
           {" "}
           <img src={slider4} alt="" />
           <h3
-            className="text-4xl uppercase text-black text-center absolute top-1/2 left-1/2"
+            className="md:text-4xl text-2xl uppercase text-white text-center absolute top-1/2 left-1/2"
             style={{ transform: " translate(-50%, -50%)" }}
           >
             Deserts
@@ -67,7 +67,7 @@ const Slider = () => {
           {" "}
           <img src={slider5} alt="" />
           <h3
-            className="text-4xl uppercase text-black text-center absolute top-1/2 left-1/2"
+            className="md:text-4xl text-2xl uppercase text-white text-center absolute top-1/2 left-1/2"
             style={{ transform: " translate(-50%, -50%)" }}
           >
             Salads

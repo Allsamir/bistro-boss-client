@@ -28,7 +28,7 @@ const Testimonial: React.FC = () => {
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
           {reviews.map((review, index) => (
             <SwiperSlide key={index}>
-              <div className="mx-8 my-12 space-y-12">
+              <div className=" my-12 space-y-12">
                 <Rate disabled defaultValue={review.rating} />
                 <div className="">
                   {" "}

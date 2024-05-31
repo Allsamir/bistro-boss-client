@@ -19,10 +19,12 @@ import AdminRoute from "./private/AdminRoute";
 import UpdateItems from "./adminD/UpdateItems";
 import PaymentCompletion from "./dasboard/PaymentCompletion";
 import PaymentHistory from "./dasboard/PaymentHistory";
+import ErrorPage from "./ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",

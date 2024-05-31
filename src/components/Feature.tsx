@@ -12,7 +12,7 @@ const Feature = () => {
         className="pb-24 pt-4"
       >
         <PageTitle heading="Featured Items" subHeading="Check it out" />
-        <div className="md:flex justify-center items-center gap-12">
+        <div className="md:flex justify-center items-center gap-12 px-4">
           <div>
             <img src={featuredImg} alt="" />
           </div>

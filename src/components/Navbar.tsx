@@ -57,7 +57,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-center">
-        <a className="text-xl uppercase font-bold">Bistro Boss</a>
+        <a className="text-xl uppercase font-bold">Cafe Gratitude</a>
       </div>
       <div className="navbar-end flex-1">
         {user ? (

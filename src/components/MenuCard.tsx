@@ -13,11 +13,11 @@ interface ChildProps {
 
 const MenuCard: React.FC<ChildProps> = ({ item }) => {
   return (
-    <div className="flex gap-8">
+    <div className="lg:flex gap-8">
       <img
         style={{ borderRadius: "0 200px 200px 200px" }}
         src={item.image}
-        className="w-32"
+        className="w-32 lg:pb-0 pb-4"
         alt={item.name}
       />
       <div className="space-y-4">
