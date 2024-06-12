@@ -90,14 +90,6 @@ const router = createBrowserRouter([
         path: "payment-ssl-success",
         element: <PaymentSuccess />,
       },
-      {
-        path: "payment-ssl-fail",
-        element: <></>,
-      },
-      {
-        path: "payment-ssl-cancel",
-        element: <></>,
-      },
       // Admin routes
       {
         path: "admin-home",

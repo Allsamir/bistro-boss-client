@@ -29,14 +29,11 @@ const Login: React.FC = () => {
   const signInWithGoogle = () => {
     googleProvider()
       .then((result) => {
-        publicAxios
-          .post(`/users`, {
-            email: result.user.email,
-            name: result.user.displayName,
-          })
-          .then(() => {
-            navigate(location.state || "/");
-          });
+        publicAxios.post(`/users`, {
+          email: result.user.email,
+          name: result.user.displayName,
+        });
+        navigate(location.state || "/");
       })
       .catch((err) => console.error(err));
   };
