@@ -40,7 +40,7 @@ const Cart: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Cart</title>
+        <title>Cafe Gratitude | Cart</title>
       </Helmet>
       <div className="container mx-auto px-4 mt-12">
         <div className="flex justify-evenly items-center">

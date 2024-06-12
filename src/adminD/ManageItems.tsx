@@ -41,7 +41,7 @@ const ManageItems: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Manage Items</title>
+        <title>Cafe Gratitude | Manage Items</title>
       </Helmet>
       <PageTitle heading="Manage All items" subHeading="Hurry up"></PageTitle>
       <div className="container mx-auto px-4">

@@ -40,7 +40,7 @@ const Review: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Review</title>
+        <title>Cafe Gratitude | Review</title>
       </Helmet>
       <div className="container mx-auto px-4">
         <PageTitle

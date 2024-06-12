@@ -72,7 +72,7 @@ const AllUsers: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | All Users</title>
+        <title>Cafe Gratitude | All Users</title>
       </Helmet>
       <div className="container mx-auto px-4">
         <div className="content mt-12">

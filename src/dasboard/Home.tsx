@@ -21,7 +21,7 @@ const Home: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | User Home</title>
+        <title>Cafe Gratitude | User Home</title>
       </Helmet>
       <h2 className="text-3xl uppercase font-bold text-center my-12">
         <span>Hi, Welcome</span> {user ? user.displayName : "Back"}

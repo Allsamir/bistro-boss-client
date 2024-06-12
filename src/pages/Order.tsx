@@ -32,7 +32,7 @@ const Order: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Order Food | {menu}</title>
+        <title>Cafe Gratitude | Order Food | {menu}</title>
       </Helmet>
       <PageCover img={orderCoverImg} title="Order Food" />
       <div className="my-24">

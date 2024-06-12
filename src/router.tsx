@@ -20,6 +20,7 @@ import UpdateItems from "./adminD/UpdateItems";
 import PaymentCompletion from "./dasboard/PaymentCompletion";
 import PaymentHistory from "./dasboard/PaymentHistory";
 import ErrorPage from "./ErrorPage";
+import PaymentSuccess from "./dasboard/PaymentSuccess";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -84,6 +85,18 @@ const router = createBrowserRouter([
       {
         path: "payment-history",
         element: <PaymentHistory />,
+      },
+      {
+        path: "payment-ssl-success",
+        element: <PaymentSuccess />,
+      },
+      {
+        path: "payment-ssl-fail",
+        element: <></>,
+      },
+      {
+        path: "payment-ssl-cancel",
+        element: <></>,
       },
       // Admin routes
       {

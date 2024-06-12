@@ -16,7 +16,7 @@ const PaymentHistory: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Payment History</title>
+        <title>Cafe Gratitude | Payment History</title>
       </Helmet>
       <div className="container mx-auto px-4">
         <div className="mt-12">

@@ -35,9 +35,12 @@ const Reservation: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Reservation</title>
+        <title>Cafe Gratitude | Reservation</title>
       </Helmet>
       <PageTitle heading="Payment" subHeading="Please Pay First"></PageTitle>
+      <h2 className="text-2xl text-center font-semibold mb-20">
+        Total Amount: ${totalPrice}
+      </h2>
       <div className="container mx-auto px-4">
         <div className="w-full lg:w-1/2 md:w-4/5 mx-auto mb-24">
           {clientSecret && (

@@ -126,7 +126,7 @@ const Home: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Admin Home</title>
+        <title>Cafe Gratitude | Admin Home</title>
       </Helmet>
       <div className="container mx-auto px-4">
         <h2 className="text-3xl uppercase font-bold text-center mt-12">

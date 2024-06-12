@@ -89,7 +89,7 @@ const AddItems: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Add Items</title>
+        <title>Cafe Gratitude | Add Items</title>
       </Helmet>
       <PageTitle heading="Add an item" subHeading="Whats new?"></PageTitle>
       <div className="bg-slate-100 p-16">

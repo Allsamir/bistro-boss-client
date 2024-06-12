@@ -17,7 +17,7 @@ const Menu = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Menu</title>
+        <title>Cafe Gratitude | Menu</title>
       </Helmet>
       <PageCover img={coverImg} title="Our Menu" />
       <PageTitle

@@ -22,7 +22,7 @@ const Dasboard: React.FC = () => {
         <div className="drawer-content">
           <div className="navbar bg-base-100">
             <div className="flex-1">
-              <a className="text-xl uppercase font-bold">Bistro Boss</a>
+              <a className="text-xl uppercase font-bold">Cafe Gratitude</a>
             </div>
             <div className="flex-none">
               <label htmlFor="my-drawer-4" className="drawer-button btn">

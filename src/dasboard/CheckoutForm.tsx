@@ -68,16 +68,46 @@ const CheckoutForm = () => {
     }
     setPending(false);
   };
+  const hanldeSSLCommerPaymentGetaway = () => {
+    if (totalPrice === 0) {
+      return;
+    }
+    const paymentInfo = {
+      email: user?.email,
+      name: user?.displayName,
+      price: totalPrice,
+      order: carts.map((cartItems: Menu) => cartItems._id),
+      status: "pending",
+    };
+    secureAxios
+      .post("/ssl-payment", paymentInfo)
+      .then((res) => {
+        const redirectURL = res.data.paymentURL;
+        if (redirectURL) {
+          window.location.replace(redirectURL);
+        }
+      })
+      .catch((err) => console.error(err));
+  };
   return (
     <form onSubmit={handleSubmit}>
       <PaymentElement />
-      <button
-        type="submit"
-        className="btn btn-outline mt-8"
-        disabled={isPending}
-      >
-        {isPending ? "Pending" : "Pay Now"}
-      </button>
+      <div className="flex gap-8">
+        <button
+          type="submit"
+          className="btn btn-outline mt-8"
+          disabled={isPending}
+        >
+          {isPending ? "Pending" : "Pay Now With Stripe"}
+        </button>
+        <button
+          type="button"
+          className="btn btn-outline mt-8"
+          onClick={hanldeSSLCommerPaymentGetaway}
+        >
+          Pay Now With SSL Commerce
+        </button>
+      </div>
       {message && (
         <p
           className={`mt-4 ${

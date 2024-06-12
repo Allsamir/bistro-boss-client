@@ -1,10 +1,9 @@
 import axios from "axios";
 import { signOut } from "firebase/auth";
 import { auth } from "../config/firebase.config";
-import Swal from "sweetalert2";
 
 const secureAxios = axios.create({
-  baseURL: "https://cafe-gratitude-server.vercel.app/",
+  baseURL: "https://cafe-gratitude-server.vercel.app",
   withCredentials: true,
 });
 
@@ -33,15 +32,7 @@ const useSecureAxios = () => {
       console.error("Response Error:", error.response); // Logging response errors
       if (error.response?.status === 401 || error.response?.status === 403) {
         signOut(auth).then(() => {
-          const errorMessage =
-            error.response.status === 401
-              ? "Unauthorized. Please log in again."
-              : "This data doesn't belong to you. Please log in again.";
-          Swal.fire({
-            title: `Error ${error.response.status}`,
-            text: errorMessage,
-            icon: "error",
-          });
+          console.log("User logout");
         });
       }
       return Promise.reject(error);

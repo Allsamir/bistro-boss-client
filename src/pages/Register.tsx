@@ -85,7 +85,7 @@ const Register: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Register</title>
+        <title>Cafe Gratitude | Register</title>
       </Helmet>
       <div
         className={`hero min-h-screen`}

@@ -77,7 +77,7 @@ const Login: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Login</title>
+        <title>Cafe Gratitude | Login</title>
       </Helmet>
       <div
         className="hero min-h-screen bg-base-200"
