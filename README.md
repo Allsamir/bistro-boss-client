@@ -1,4 +1,4 @@
-# Cafe Gratitude a Resturant Management Web APP(Sever)
+# Cafe Gratitude a Resturant Management Web APP(Client)
 
 Welcome to Cafe Gratitude Management WebApp! This web application provides a platform for managing restaurant operations efficiently. Below are some of the key features of the app:
 
